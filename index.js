@@ -16,10 +16,10 @@ app.use(express.json());
 
 app.use(userRoutes);
 app.use(orgRoutes);
+app.use(eventRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
-
 
 app.get("/", (req, res) => {
 	res.send("API is running");

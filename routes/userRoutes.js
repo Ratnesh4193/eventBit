@@ -39,11 +39,10 @@ router.post(
 		});
 		const saved = await user.save();
 		if (user) {
-			console.log(user);
 			sendMail({
 				mail: email,
-				subject: "Main-Proj Sign up",
-				text: "Main-Proj Sign up",
+				subject: "eventBit Sign up",
+				text: "eventBit Sign up",
 			});
 			res.json({ message: "saved user successfully" });
 		} else {
@@ -63,13 +62,12 @@ router.get(
 		}
 		const savedUser = await User.findOne({ email });
 		if (savedUser) {
-			console.log(savedUser);
 			const matched = await bcrypt.compare(password, savedUser.password);
 			if (matched) {
 				const { _id, name, email } = savedUser;
 				res.json({
 					message: "User SignIn successfully",
-					org: { _id, name, email },
+					user: { _id, name, email },
 				});
 			} else return res.status(422).json({ error: "Invalid Credentials" });
 		} else return res.status(422).json({ error: "Invalid Credentials" });

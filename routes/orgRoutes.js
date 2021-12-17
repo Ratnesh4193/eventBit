@@ -13,7 +13,7 @@ router.get(
 	asyncHandler(async (req, res) => {
 		const savedOrgs = await Org.find({});
 		if (savedOrgs) {
-			return res.status(201).send(savedOrgs);
+			return res.status(201).json({ savedOrgs });
 		} else return res.status(500).send("Internal Server Error");
 	})
 );
@@ -37,13 +37,12 @@ router.post(
 		});
 		const saved = await org.save();
 		if (saved) {
-			console.log(saved);
 			sendMail({
 				mail: email,
 				subject: "Main-Proj Sign up",
 				text: "Main-Proj Sign up",
 			});
-			res.status(201).json({ message: "saved org successfully" });
+			res.status(201).json({ message: "saved org successfully", org: saved });
 		} else res.status(401).json({ message: "Internal Server Error" });
 	})
 );
