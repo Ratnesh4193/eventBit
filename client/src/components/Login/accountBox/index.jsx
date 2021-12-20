@@ -10,9 +10,10 @@ const BoxContainer = styled.div`
   min-height: 550px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   border-radius: 19px;
-  background-color: #fff;
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
+  background-color: #fff;
   position: relative;
   overflow: hidden;
 `;
@@ -71,6 +72,11 @@ const SmallText = styled.h5`
   margin-top: 7px;
 `;
 
+const ArrowTag = styled.img`
+  width: 10px;
+  height: 10px;
+`;
+
 const InnerContainer = styled.div`
   margin : 0;
   width: 100%;
@@ -104,6 +110,7 @@ const expandingTransition = {
 export const AccountBox = () => {
   const [isExpanded, setExpanded] = useState(false);
   const [active, setActive] = useState("signin");
+  const [user, setUser] = useState("Signin");
 
   const playExpandingAnimation = () => {
     setExpanded(true);
@@ -126,7 +133,23 @@ export const AccountBox = () => {
     }, 400);
   };
 
+  const switchToSigninOrg = () => {
+    playExpandingAnimation();
+    setTimeout(() => {
+      setUser("Signin");
+    }, 400);
+  };
+
+  const switchToSignupOrg = () => {
+    playExpandingAnimation();
+    setTimeout(() => {
+      setActive("Signup");
+    }, 400);
+  };
+
+
   const contextValue = { switchToSignup, switchToSignin };
+  const whichValue = {switchToSigninOrg , switchToSignupOrg};
 
   return (
     <AccountContext.Provider value={contextValue}>
@@ -142,16 +165,17 @@ export const AccountBox = () => {
             <HeaderContainer>
               <HeaderText>Welcome</HeaderText>
               <HeaderText>Back</HeaderText>
-              <SmallText>Please sign-in to continue!</SmallText>
+              <SmallText>Please Sign-in To Continue!</SmallText>
             </HeaderContainer>
           )}
           {active === "signup" && (
             <HeaderContainer>
               <HeaderText>Create</HeaderText>
               <HeaderText>Account</HeaderText>
-              <SmallText>Please sign-up to continue!</SmallText>
+              <SmallText>Please Sign-up To Continue!</SmallText>
             </HeaderContainer>
           )}
+
         </TopContainer>
         <InnerContainer>
           {active === "signin" && <LoginForm />}

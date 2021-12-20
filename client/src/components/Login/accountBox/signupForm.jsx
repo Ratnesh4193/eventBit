@@ -3,6 +3,7 @@ import {
   BoldLink,
   BoxContainer,
   FormContainer,
+  FormContainer1,
   Input,
   MutedLink,
   SubmitButton,
@@ -15,19 +16,19 @@ export const SignupForm = () => {
 
   return (
     <BoxContainer>
-      <FormContainer>
+      <FormContainer1>
         <Input type="text" placeholder="Full Name" />
         <Input type="email" placeholder="Email" />
         <Input type="password" placeholder="Password" />
         <Input type="password" placeholder="Confirm Password" />
-      </FormContainer>
+      </FormContainer1>
       <Marginer direction="vertical" margin={10} />
-      <SubmitButton type="submit">Signup</SubmitButton>
+      <SubmitButton type="submit">Register</SubmitButton>
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
-        Already have an account?
+        Already have an account ? 
         <BoldLink href="#" onClick={switchToSignin}>
-          Signin
+          Login
         </BoldLink>
       </MutedLink>
     </BoxContainer>
